@@ -1,22 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Rock Paper Scissors</title>
 </head>
 <body>
+  <h1>Rock Paper Scissors</h1>
+  <button onclick="playRound('rock')">Rock</button>
+  <button onclick="playRound('paper')">Paper</button>
+  <button onclick="playRound('scissors')">Scissors</button>
+  <p id="result"></p>
 
   <script>
-    
-    function sum(param1, param2) {
-      return param1 + param2;
+    function getComputerChoice() {
+      const choices = ['rock', 'paper', 'scissors'];
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      return choices[randomIndex];
     }
 
-    sum(1, 2);
+    function playRound(humanChoice) {
+      let computerChoice = getComputerChoice();
+      let result = '';
 
-    console.log(sum(3))
+      if (computerChoice === humanChoice) {
+        result = 'It is a tie';
+      } else if (humanChoice === 'rock') {
+        result = (computerChoice === 'paper') ? 'Computer wins' : 'Human wins';
+      } else if (humanChoice === 'paper') {
+        result = (computerChoice === 'scissors') ? 'Computer wins' : 'Human wins';
+      } else if (humanChoice === 'scissors') {
+        result = (computerChoice === 'rock') ? 'Computer wins' : 'Human wins';
+      }
+
+      document.getElementById('result').innerText = result;
+    }
   </script>
-
 </body>
 </html>
